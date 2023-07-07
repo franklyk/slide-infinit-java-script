@@ -1,5 +1,11 @@
 
 
+$color-black: #1f2029;
+$color-red: #c5312c;
+$color-white: #fff;
+$color-white-dark: #cd8cf5;
+
+
 
 $font-title:  'Roboto', sans-serif;
 $font-paragraph: 'Josefin Sans', sans-serif;
@@ -19,32 +25,56 @@ html, body{
     width: 100vw;
 }
 body{
-    background: #1f2029;
+    background: $color-black;
 }
 .wrapper{
     align-items: center;
     height: 100%;
     display: flex;
     .slide-wrapper{
-        // width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+        .slide-nav-button {
+            background: transparent;
+            color: $color-white;
+            cursor: pointer;
+            font-size: 35px;
+            position: absolute;
+            z-index: 1;
+        }
+        .slide-nav-previews{
+            left: 20px;
+        }
+        .slide-nav-next{
+            right: 20px;
+        }
+
         .slide-list{
             display: flex;
             // width: 100%;
             .slide-item{
+                cursor: grab;
                 flex-shrink: 0;
                 margin: 0 10px;
                 padding: 0 10px;
                 width: 90%;
                 .slide-content{
                     @include config();
+                    border-radius: 10px;
+                    box-shadow:  0 12px 12px #000;
                     position: relative;
                     .slide-image{
+                        border-radius: 10px;
                         width: 100%;
                     }
                     .slide-description{
-                        background: linear-gradient(to top,#000, transparent);
+                        background: linear-gradient(to top, $color-black, transparent);
+                        border-radius: 10px;
                         bottom: 0;
-                        color: #fff;
+                        color: $color-white;
                         padding: 30px;
                         position: absolute;
                         width: 100%;
@@ -64,5 +94,61 @@ body{
                 }
             }
         }
+        .slide-controls{
+            margin: 30px auto 0;
+            .slide-control-button{
+                background: transparent;
+                color: $color-white;
+                cursor: pointer;
+                font-size: 18px;
+                margin: 0 5px;
+                &.active{
+                    color: $color-red;
+                }
+            }
+        }
     }
+}
+@media(max-width: 768px){
+    .wrapper{
+        .slide-wrapper{
+            .slide-nav-button {
+                font-size: 28px;
+                margin-top: -20px;
+            }
+            .slide-nav-previews{
+                left: 15px;
+            }
+            .slide-nav-next{
+                right: 15px;
+            }
+            .slide-list{
+                .slide-item{
+                    .slide-content{
+                        .slide-image{
+
+                        }
+                        .slide-description{
+                            padding: 10px;
+                            h3{
+                                font-size: 24px;
+                                top: 0;
+                            }
+                            p{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .slide-controls{
+                margin: 15px auto 0;
+                .slide-control-button{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+
 }
